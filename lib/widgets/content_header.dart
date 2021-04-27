@@ -8,6 +8,7 @@ class ContentHeader extends StatelessWidget {
 
   const ContentHeader({Key key, @required this.featuredContent})
       : super(key: key);
+      
   @override
   Widget build(BuildContext context) {
     return Stack(
