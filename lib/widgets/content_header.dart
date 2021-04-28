@@ -8,7 +8,7 @@ class ContentHeader extends StatelessWidget {
 
   const ContentHeader({Key key, @required this.featuredContent})
       : super(key: key);
-      
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -64,12 +64,17 @@ class ContentHeader extends StatelessWidget {
 }
 
 class _PlayButton extends StatelessWidget {
+  final ButtonStyle buttonStyle = TextButton.styleFrom(
+    primary: Colors.black,
+    backgroundColor: Colors.white,
+    padding: EdgeInsets.fromLTRB(15.0, 5.0, 20.0, 5.0),
+  );
+
   @override
   Widget build(BuildContext context) {
-    return FlatButton.icon(
-        padding: const EdgeInsets.fromLTRB(15.0, 5.0, 20.0, 5.0),
+    return TextButton.icon(
+        style: buttonStyle,
         onPressed: () => print('Play'),
-        color: Colors.white,
         icon: const Icon(
           Icons.play_arrow,
           size: 30.0,
