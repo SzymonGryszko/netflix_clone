@@ -129,13 +129,22 @@ class __ContentHeaderDesktopState extends State<_ContentHeaderDesktop> {
                     fit: BoxFit.cover,
                   ),
           ),
-          Container(
-            height: 500.0,
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                  colors: [Colors.black, Colors.transparent],
-                  begin: Alignment.bottomCenter,
-                  end: Alignment.topCenter),
+          Positioned(
+            bottom: -1.0,
+            left: 0,
+            right: 0,
+            child: AspectRatio(
+              aspectRatio: _videoController.value.initialized
+                  ? _videoController.value.aspectRatio
+                  : 2.344,
+              child: Container(
+                decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                      colors: [Colors.black, Colors.transparent],
+                      begin: Alignment.bottomCenter,
+                      end: Alignment.topCenter),
+                ),
+              ),
             ),
           ),
           Positioned(
@@ -177,13 +186,16 @@ class __ContentHeaderDesktopState extends State<_ContentHeaderDesktop> {
                       onPressed: () => print('More Info'),
                       style: ButtonStyle(
                         padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
-                            EdgeInsets.fromLTRB(15.0, 5.0, 20.0, 5.0)),
+                            EdgeInsets.fromLTRB(25.0, 10.0, 30.0, 10.0)),
                         foregroundColor:
                             MaterialStateProperty.all<Color>(Colors.black),
                         backgroundColor:
                             MaterialStateProperty.all<Color>(Colors.white),
                       ),
-                      icon: const Icon(Icons.info_outline),
+                      icon: const Icon(
+                        Icons.info_outline,
+                        size: 30.0,
+                      ),
                       label: const Text(
                         'More Info',
                         style: TextStyle(
@@ -219,14 +231,16 @@ class __ContentHeaderDesktopState extends State<_ContentHeaderDesktop> {
 }
 
 class _PlayButton extends StatelessWidget {
-  final ButtonStyle buttonStyle = TextButton.styleFrom(
-    primary: Colors.black,
-    backgroundColor: Colors.white,
-    padding: EdgeInsets.fromLTRB(15.0, 5.0, 20.0, 5.0),
-  );
-
   @override
   Widget build(BuildContext context) {
+    final ButtonStyle buttonStyle = TextButton.styleFrom(
+      primary: Colors.black,
+      backgroundColor: Colors.white,
+      padding: !Responsive.isDesktop(context)
+          ? EdgeInsets.fromLTRB(15.0, 5.0, 20.0, 5.0)
+          : EdgeInsets.fromLTRB(25.0, 10.0, 30.0, 10.0),
+    );
+
     return TextButton.icon(
         style: buttonStyle,
         onPressed: () => print('Play'),
